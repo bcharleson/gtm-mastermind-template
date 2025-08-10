@@ -1,0 +1,37 @@
+# OS / Python
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.pytest_cache/
+
+# Virtual environments
+venv/
+.venv/
+
+# Environment files (keep example only)
+.env
+.env.*
+!.env.example
+
+# Outputs and logs
+outputs/
+demo/outputs/
+**/*.log
+
+# Data (keep template only)
+data/*.csv
+!data/companies_template.csv
+
+# Domain-specific/private scripts (local only)
+scripts/dental_us_scrape_to_clay.py
+scripts/hvac_pool_scrape_to_clay.py
+scripts/enterprise_dev_to_clay.py
+
+# Editors / IDE
+.vscode/
+.idea/
+
+

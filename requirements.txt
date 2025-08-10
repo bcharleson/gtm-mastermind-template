@@ -1,0 +1,27 @@
+# Core Dependencies
+python-dotenv==1.1.1
+openai>=1.68.2
+aiohttp>=3.12.0
+httpx>=0.28.0
+
+# Web Scraping
+crawl4ai>=0.6.3
+firecrawl-py>=2.15.0
+beautifulsoup4>=4.13.0
+lxml>=5.4.0
+playwright>=1.49.0
+
+# Data Processing
+polars>=1.31.0
+pandas>=2.3.0  # Optional alternative to polars
+
+# Utilities
+click>=8.2.0
+rich>=14.0.0
+tqdm>=4.67.0
+colorama>=0.4.6
+
+# Additional Tools
+requests>=2.32.0
+pyyaml>=6.0.2
+jsonschema>=4.24.0
