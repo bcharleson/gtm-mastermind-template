@@ -1,21 +1,24 @@
 # GTM Mastermind Template
 
-A comprehensive Go-To-Market (GTM) research automation template for B2B companies. This template provides parallel web scraping, deep research integration, and comprehensive reporting capabilities.
+A scraping-first Go-To-Market (GTM) automation template for B2B teams. Collect data from the web using Crawl4AI, enrich or summarize with lightweight GPT-5 nano transforms, normalize with pandas/Polars, and ship results to a Clay table or n8n via webhook. Firecrawl and OpenAI Deep Research are optional add-ons.
 
 ## 🚀 Features
 
-- **Parallel Web Scraping**: Uses Crawl4AI with proxy support for cost-effective data collection
-- **Deep Research Integration**: OpenAI Deep Research API for comprehensive company analysis
-- **Smart Cost Optimization**: Automatic fallback from cheap to premium scraping methods
-- **Comprehensive Outputs**: Markdown reports, JSON data, and CSV exports
-- **Real-time Monitoring**: Track progress, costs, and results as they come in
+- **Parallel Web Scraping (Core)**: Crawl4AI with optional proxies for scale and resiliency
+- **Lightweight AI Transforms**: GPT-5 nano for parsing/summarization/classification (optional)
+- **Fallback Providers (Optional)**: Firecrawl when Crawl4AI is insufficient
+- **Deep Research (Optional)**: OpenAI Deep Research if deeper analysis is required
+- **Data Normalization**: Pandas/Polars pipelines for clean, tabular outputs
+- **Webhook Delivery**: Send results to Clay or n8n via `WEBHOOK_URL`
+- **Monitoring & Costs**: Real-time tracking and cost guardrails
 
 ## 📋 Prerequisites
 
 - Python 3.8+
-- OpenAI API key (for Deep Research)
-- Firecrawl API key (optional, for fallback scraping)
+- OpenAI API key (optional for GPT-5 nano transforms and/or Deep Research)
+- Firecrawl API key (optional for fallback scraping)
 - Proxy service (optional but recommended for scale)
+- A `WEBHOOK_URL` (Clay table webhook or your n8n endpoint)
 
 ## 🛠️ Setup
 
@@ -44,9 +47,9 @@ A comprehensive Go-To-Market (GTM) research automation template for B2B companie
    ```
 
 5. **Prepare your data**:
-   - Add your company list as a CSV file in `data/companies.csv`
-   - Required columns: Company Name, Website
-   - Optional columns: Industry, Revenue, Employees, LinkedIn URL, etc.
+   - Start from `data/companies_template.csv` and add your rows
+   - Recommended columns: Company Name, Website, Industry, LinkedIn URL, etc.
+   - Set your `WEBHOOK_URL` in `.env` for Clay or n8n
 
 ## 🚦 Quick Start
 
@@ -55,7 +58,7 @@ A comprehensive Go-To-Market (GTM) research automation template for B2B companie
    python scripts/quick_company_test.py
    ```
 
-2. **Run full pipeline**:
+2. **Run full scraping pipeline**:
    ```bash
    python scripts/run_parallel_research.py 10 5
    # Processes 10 companies in batches of 5
@@ -69,16 +72,16 @@ A comprehensive Go-To-Market (GTM) research automation template for B2B companie
 ## 📊 Scripts Overview
 
 ### Core Pipeline
-- `run_parallel_research.py` - Main pipeline orchestrator
-- `parallel_company_research.py` - Core research logic
-- `smart_scraping_workflow.py` - Intelligent web scraping
+- `run_parallel_research.py` - Main scraping pipeline orchestrator
+- `parallel_company_research.py` - Core scraping + AI-transform logic
+- `smart_scraping_workflow.py` - Crawl4AI-first strategy with optional fallbacks
 
-### Monitoring & Management
-- `track_costs.py` - Cost tracking and projections
+### Monitoring & Delivery
 - `watch_results.py` - Real-time result notifications
+- `track_costs.py` - Cost tracking and projections
 - `pipeline_manager.py` - Interactive pipeline control
 
-### Testing & Demos
+### Testing & Utilities
 - `quick_company_test.py` - Test with single company
 - `test_proxy_scraping.py` - Verify proxy configuration
 
@@ -94,11 +97,12 @@ outputs/
 └── research_pipeline.log     # Detailed logs
 ```
 
-## 💰 Cost Estimates
+## 💰 Cost Estimates (Typical)
 
-- **Web Scraping**: ~$0.001-0.01 per company
-- **Deep Research**: ~$0.15-0.50 per company
-- **Total**: ~$0.15-0.51 per company
+- **Web Scraping (Crawl4AI)**: Low cost, proxy-dependent
+- **Firecrawl (Optional)**: Varies by plan/usage
+- **AI Transforms (GPT-5 nano)**: Minimal
+- **Deep Research (Optional)**: Higher, only if enabled
 
 ## 🔧 Configuration
 
@@ -126,19 +130,19 @@ SCRAPING_COST_LIMIT_DAILY=5.00
 
 ## 🎯 Customization Guide
 
-### 1. Modify Research Prompts
-Edit `config/research_prompts.py` to customize what information to extract.
+### 1. Modify Extraction Prompts
+Edit `config/research_prompts.py` to control what to extract or summarize.
 
 ### 2. Add Industry-Specific Logic
-Update the `analyze_company_gtm_relevance()` method in `parallel_company_research.py`.
+Update `analyze_company_gtm_relevance()` in `parallel_company_research.py`.
 
-### 3. Custom Output Formats
-Modify the `generate_markdown_report()` and `generate_json_output()` methods.
+### 3. Output Formats
+Adapt CSV/JSON normalization (pandas/Polars) and markdown generation as needed.
 
 ### 4. Integration Points
-- **CRM Export**: Adapt `generate_master_csv()` for your CRM format
-- **Webhook Notifications**: Add to `deep_research_async.py`
-- **Database Storage**: Extend `save_outputs()` method
+- **Webhook Delivery**: Use `WEBHOOK_URL` (Clay table webhook or n8n)
+- **CRM Export**: Extend CSV to match your CRM
+- **Storage**: Extend `save_outputs()` to push to DB/S3
 
 ## 🚨 Troubleshooting
 

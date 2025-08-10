@@ -3,8 +3,8 @@
 These rules define what this repository is (and is not), how to work within it, and what must never be committed. They distill the intent of QUICK_START.md and README into enforceable, actionable guidance.
 
 ### Purpose and Scope
-- **Purpose**: A clean, forkable template for building AI-powered B2B research pipelines using OpenAI Deep Research plus cost-effective scraping fallbacks.
-- **In-Scope**: General, reusable pipeline code, example scripts, prompt configuration, and folder structure that help others run the template out-of-the-box.
+- **Purpose**: A clean, forkable, scraping-first GTM template. Crawl the web (Crawl4AI-first), optionally apply lightweight GPT-5 nano transforms and add Firecrawl/Deep Research if needed, normalize with pandas/Polars, and send results to a Clay table or n8n via webhook.
+- **In-Scope**: General, reusable scraping pipeline code, example scripts, prompt configuration, and folder structure that help others run the template out-of-the-box.
 - **Out-of-Scope**: Any personal, client-specific, or proprietary scrapers, datasets, or secrets.
 
 ### Directory Contract
@@ -20,12 +20,13 @@ These rules define what this repository is (and is not), how to work within it, 
 - Never commit secrets. Use `.env` locally and do not version it.
 - The template ships with `.env.example`. Forkers copy it to `.env` and fill values.
 - Required keys (see README for details):
-  - `OPENAI_API_KEY`
-  - Optional: `FIRECRAWL_API_KEY`, `DEEPSEEK_API_KEY`, proxy credentials, cost limits
+  - `WEBHOOK_URL` (Clay table webhook or n8n endpoint)
+  - Optional: `OPENAI_API_KEY` (GPT-5 nano or Deep Research), `FIRECRAWL_API_KEY`, `DEEPSEEK_API_KEY`, proxy credentials, cost limits
 
 ### Execution Standards
 - Use a Python virtual environment (`python3 -m venv venv; source venv/bin/activate`).
 - Install dependencies from `requirements.txt`.
+- Configure `WEBHOOK_URL` to deliver outputs to Clay or n8n.
 - Run general-purpose scripts only (see next section).
 
 ### Scripts Policy
