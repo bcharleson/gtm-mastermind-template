@@ -63,7 +63,7 @@ A comprehensive Go-To-Market (GTM) research automation template for B2B companie
 
 3. **Monitor progress**:
    ```bash
-   python scripts/monitor_research_progress.py --continuous
+   python scripts/watch_results.py --continuous
    ```
 
 ## 📊 Scripts Overview
@@ -72,11 +72,8 @@ A comprehensive Go-To-Market (GTM) research automation template for B2B companie
 - `run_parallel_research.py` - Main pipeline orchestrator
 - `parallel_company_research.py` - Core research logic
 - `smart_scraping_workflow.py` - Intelligent web scraping
-- `deep_research_async.py` - OpenAI Deep Research integration
 
 ### Monitoring & Management
-- `monitor_research_progress.py` - Track overall progress
-- `track_deep_research.py` - Monitor research task status
 - `track_costs.py` - Cost tracking and projections
 - `watch_results.py` - Real-time result notifications
 - `pipeline_manager.py` - Interactive pipeline control
@@ -84,7 +81,6 @@ A comprehensive Go-To-Market (GTM) research automation template for B2B companie
 ### Testing & Demos
 - `quick_company_test.py` - Test with single company
 - `test_proxy_scraping.py` - Verify proxy configuration
-- `demo_research_pipeline.py` - Demo with small batch
 
 ## 📁 Output Structure
 
