@@ -33,11 +33,6 @@ These rules define what this repository is (and is not), how to work within it, 
 - Allowed (template/general purpose):
   - Research orchestration, parallelization, monitoring, cost tracking, data cleaners, safe CSV creators, quick tests, and generic scraping workflow helpers.
   - Examples: `run_parallel_research.py`, `parallel_company_research.py`, `smart_scraping_workflow.py`, `quick_company_test.py`, `track_costs.py`, `watch_results.py`, etc.
-- Excluded (personal or domain-specific; kept local only and ignored by git):
-  - `scripts/dental_us_scrape_to_clay.py`
-  - `scripts/hvac_pool_scrape_to_clay.py`
-  - `scripts/enterprise_dev_to_clay.py`
-  - Any new client- or niche-specific scrapers should follow the same pattern: keep locally and add to `.gitignore`.
 
 ### Data and Outputs Policy
 - Data: Only include small, safe templates (e.g., `data/companies_template.csv`). Real datasets are local-only.
