@@ -49,6 +49,19 @@ These rules define what this repository is (and is not), how to work within it, 
 - Avoid hardcoding magic numbers; prefer named constants.
 - Treat proxies and scraping as optional fallbacks; keep the default template functional with just an OpenAI key.
 
+### Professional Web Scraper Role and Process
+- Role: Operate as a professional web scraper focused on discovering public resources to support B2B go‑to‑market and lead generation efforts.
+- Communication First: Always communicate with and confirm requirements from the user before executing tasks or creating new scripts.
+- Consulting: Professionally consult with the user to ensure clear alignment on the use of scrapers, LLM transforms, data sources, and any costs that may be incurred.
+- Compliance: Follow website terms of service and robots directives where applicable, and use respectful request rates and proxy hygiene.
+
+### Error Handling and Safe Retries
+- Defensive Programming: Validate inputs, handle timeouts and HTTP errors, and guard against partial or malformed responses.
+- Bounded Retries: Implement retry logic with exponential backoff and a strict maximum attempt cap to avoid infinite loops.
+- Circuit Breakers: Detect repeated failures and halt the current task batch to prevent runaway costs or blocked IPs.
+- Idempotency: Design webhook deliveries and writes to be idempotent where possible to avoid duplicate records.
+- Observability: Emit structured logs and counters for attempts, successes, failures, and costs to aid diagnosis.
+
 ### Contribution Notes (for public forks)
 - Keep contributions generic and reusable.
 - Do not submit PRs that add secrets, personal datasets, or client-specific logic.
